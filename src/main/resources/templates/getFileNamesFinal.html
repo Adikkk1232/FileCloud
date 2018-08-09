@@ -1,10 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+
+<ul>
+    <li th:each="name : ${names}">
+        <span th:text="${name}"></span>
+    </li>
+</ul>
+
+<a th:href="@{/}">Return to home page</a>
 
 </body>
 </html>

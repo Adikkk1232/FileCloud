@@ -18,6 +18,8 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.List;
 
+// TODO: Write test for this MVC controller.
+
 @Controller
 public class FileController {
     private FileService fileService;
@@ -38,13 +40,15 @@ public class FileController {
 
         try {
             fileToAdd = new File();
-            fileToAdd.setName(file.getName());
+            fileToAdd.setName(file.getOriginalFilename());
             fileToAdd.setBytes(file.getBytes());
         } catch(IOException exc) {
             exc.printStackTrace();
         }
 
         fileService.addFile(fileToAdd);
+
+        model.addAttribute("fileName", fileToAdd.getName());
 
         return "addFinal";
     }
@@ -53,6 +57,8 @@ public class FileController {
     @RequestMapping(value = "/deleteFile", method = RequestMethod.GET)
     public String deleteFile(@RequestParam("name") String name, Model model) {
         fileService.deleteFile(name);
+
+        model.addAttribute("fileName", name);
 
         return "deleteFinal";
     }
@@ -64,9 +70,9 @@ public class FileController {
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + name);
-        httpHeaders.setContentLength(file.getBytes().length);
+        httpHeaders.setContentLength(file == null ? 0 : file.getBytes().length);
 
-        return new ResponseEntity<>(file.getBytes(), httpHeaders, HttpStatus.OK);
+        return new ResponseEntity<>(file == null ? null : file.getBytes(), httpHeaders, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/getFileNames", method = RequestMethod.GET)
