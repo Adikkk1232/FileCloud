@@ -18,8 +18,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.List;
 
-// TODO: Write test for this MVC controller.
-
 @Controller
 public class FileController {
     private FileService fileService;
@@ -29,7 +27,7 @@ public class FileController {
         this.fileService = fileService;
     }
 
-    @RequestMapping(value = {"/", "/home", "/index"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/", "/home"}, method = RequestMethod.GET)
     public String home() {
         return "index";
     }
