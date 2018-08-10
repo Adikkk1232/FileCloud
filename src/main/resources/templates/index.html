@@ -2,38 +2,53 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>FileCloud</title>
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 </head>
 <body>
 
-<h1>File Cloud</h1>
+<div class="container">
+    <div class="jumbotron">
+        <h1>File Cloud</h1>
+    </div>
 
-<p>Available options</p>
-<ul>
-    <li><a th:href="@{/getFileNames}">Get list of files</a></li>
-    <li>
-        <p>Get file by name</p>
-        <form th:action="@{/getFile}" method="GET">
-            <label>File name <input type="text" placeholder="file name" name="name" required/></label>
-            <button>Get!</button>
-        </form>
-    </li>
-    <li><a th:href="@{/getFilesInZip}">Get all files</a></li>
-    <li>
-        <p>Add new file</p>
-        <form th:action="@{/addFile}" method="POST" enctype="multipart/form-data">
-            <label>File <input type="file" name="file" required/></label>
-            <button>Add!</button>
-        </form>
-    </li>
-    <li>
-        <p>Delete existing file</p>
-        <form th:action="@{/deleteFile}" method="GET">
-            <label>File name <input type="text" placeholder="file name" name="name" required/></label>
-            <button>Delete!</button>
-        </form>
-    </li>
-</ul>
+    <h2>Available options</h2>
+    <ul class="list-group">
+        <li class="list-group-item"><a th:href="@{/getFileNames}" class="btn btn-info">Get list of files</a></li>
+        <li class="list-group-item">
+            <p>Get file by name</p>
+            <form th:action="@{/getFile}" method="GET" class="form-inline">
+                <label for="getFileName">File name </label>
+                <input id="getFileName" type="text" placeholder="file name" name="name" required class="form-control"/>
+                <button type="submit" class="btn btn-success">Get!</button>
+            </form>
+        </li>
+        <li class="list-group-item"><a th:href="@{/getFilesInZip}" class="btn btn-info">Get all files</a></li>
+        <li class="list-group-item">
+            <p>Add new file</p>
+            <form th:action="@{/addFile}" method="POST" enctype="multipart/form-data" class="form-inline">
+                <label for="addFile">File </label>
+                <input id="addFile" type="file" name="file" required/>
+                <button type="submit" class="btn btn-success">Add!</button>
+            </form>
+        </li>
+        <li class="list-group-item">
+            <p>Delete existing file</p>
+            <form th:action="@{/deleteFile}" method="GET" class="form-inline">
+                <label for="deleteFileName">File name </label>
+                <input id="deleteFileName" type="text" placeholder="file name" name="name" required class="form-control"/>
+                <button type="submit" class="btn btn-success">Delete!</button>
+            </form>
+        </li>
+    </ul>
+</div>
+
+<script src="js/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="js/bootstrap.js"></script>
 
 </body>
 </html>
