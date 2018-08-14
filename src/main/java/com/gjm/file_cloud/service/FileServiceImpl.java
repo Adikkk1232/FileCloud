@@ -2,6 +2,8 @@ package com.gjm.file_cloud.service;
 
 import com.gjm.file_cloud.dao.FileDao;
 import com.gjm.file_cloud.entity.File;
+import com.gjm.file_cloud.exceptions.FileDoesntExistException;
+import com.gjm.file_cloud.exceptions.NoFilesException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +31,10 @@ public class FileServiceImpl implements FileService {
 
     @Override
     public void deleteFile(String name) {
+        if(!fileDao.findFileByName(name).isPresent()) {
+            throw new FileDoesntExistException("File " + name + " doesn't exist!");
+        }
+
         fileDao.deleteFileByName(name);
     }
 
@@ -36,7 +42,11 @@ public class FileServiceImpl implements FileService {
     public File getFileByName(String name) {
         Optional<File> result = fileDao.findFileByName(name);
 
-        return result.orElse(null);
+        if(result.isPresent()) {
+            return result.get();
+        } else {
+            throw new FileDoesntExistException("File " + name + " doesn't exist!");
+        }
     }
 
     @Override
@@ -47,7 +57,11 @@ public class FileServiceImpl implements FileService {
             names.add(file.getName());
         }
 
-        return names;
+        if(names.size() == 0) {
+            throw new NoFilesException("No files stored in FileCloud!");
+        } else {
+            return names;
+        }
     }
 
     @Override
@@ -65,7 +79,13 @@ public class FileServiceImpl implements FileService {
             }
 
             zos.finish();
-            return bos.toByteArray();
+            byte[] resultByteArray = bos.toByteArray();
+
+            if(resultByteArray.length == 0) {
+                throw new NoFilesException("No files stored in FileCloud!");
+            } else {
+                return resultByteArray;
+            }
         } catch(IOException exc) {
             exc.printStackTrace();
         }
