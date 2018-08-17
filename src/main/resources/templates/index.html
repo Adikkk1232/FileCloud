@@ -8,7 +8,8 @@
 
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" type="text/css" href="css/style.css"
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 
@@ -73,22 +74,6 @@
       </div>
       <ul class="list-group">
           <li class="list-group-item">
-            <p>General options</p>
-              <a th:href="@{/getFileNames}" class="btn btn-info">Get list of files</a> or
-            <a th:href="@{/getFilesInZip}" class="btn btn-info">Get all files</a></li>
-          <li class="list-group-item">
-              <p>Get file by name</p>
-              <form th:action="@{/getFile}" method="GET" class="form-inline">
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                      <span class="input-group-text" id="basic-addon1"><i class="material-icons">search</i></span>
-                    </div>
-                      <input type="text" id="getFileName" class="form-control" placeholder="File name" aria-label="File name" aria-describedby="basic-addon1">
-                      &nbsp<button type="submit" class="btn btn-primary">Get!</button>
-                    </div>
-              </form>
-          </li>
-          <li class="list-group-item">
               <p>Add new file</p>
               <form th:action="@{/addFile}" method="POST" enctype="multipart/form-data" class="form-inline">
                   <div class="input-group mb-3">
@@ -101,18 +86,6 @@
                 </div>
                 &nbsp<button type="submit" class="btn btn-success" >Add!</button>
               </div>
-              </form>
-          </li>
-          <li class="list-group-item">
-              <p>Delete existing file</p>
-              <form th:action="@{/deleteFile}" method="GET" class="form-inline">
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                      <span class="input-group-text" id="basic-addon1"><i class="material-icons" >delete</i></span>
-                    </div>
-                      <input type="text" id="deleteFileName" class="form-control" placeholder="File name" aria-label="File name" aria-describedby="basic-addon1">
-                      &nbsp<button type="button" class="btn btn-danger">Delete!</button>
-                    </div>
               </form>
           </li>
       </ul>
