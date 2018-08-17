@@ -17,7 +17,7 @@ public class DatabaseCleaner {
 
     @PostConstruct
     public void databaseCleaner() {
-        boolean cleanDatabase = false;
+        boolean cleanDatabase = true;
 
         if(cleanDatabase) {
             fileDao.deleteAll();
