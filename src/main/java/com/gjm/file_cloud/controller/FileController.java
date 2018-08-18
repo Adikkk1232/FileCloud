@@ -1,15 +1,11 @@
 package com.gjm.file_cloud.controller;
 
 import com.gjm.file_cloud.entity.File;
-import com.gjm.file_cloud.exceptions.FileDoesntExistException;
 import com.gjm.file_cloud.service.FileService;
 import com.gjm.file_cloud.service.FileServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -52,10 +48,6 @@ public class FileController {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(fetchedFile);
-
-        // HttpHeaders httpHeaders = new HttpHeaders();
-        //        httpHeaders.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + name);
-        //        httpHeaders.setContentLength(file == null ? 0 : file.getBytes().length);
     }
 
     @RequestMapping(value = "/file", method = RequestMethod.DELETE)
@@ -77,15 +69,11 @@ public class FileController {
     }
 
     @RequestMapping(value = "/files/zip", method = RequestMethod.GET)
-    public @ResponseBody ResponseEntity<byte[]> getAllFilesInZip() {
+    public ResponseEntity<byte[]> getAllFilesInZip() {
         byte[] zipArchive = fileService.getAllFilesInZip();
 
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(zipArchive);
-
-//        HttpHeaders httpHeaders = new HttpHeaders();
-//        httpHeaders.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=files.zip");
-//        httpHeaders.setContentLength(zipArchive.length);
     }
 }

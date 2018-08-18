@@ -31,7 +31,7 @@
 </nav>
 <center>
 <h2>FileCloud</h2>
-<h6>Files alredy stored</h6>
+<h6>Files already stored</h6>
 </center>
 <center>
 <div class="center" style="overflow-y: scroll; height:500px;">
@@ -42,17 +42,15 @@
     <li class="breadcrumb-item active" aria-current="page">Data</li>
   </ol>
 </nav>
-  <p>No files found!</p>
-
-  <div class="progress">
-    <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 98%;" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100">Storage used: 98%</div>
-  </div>
-   </ul>
   <div style="height:100%; position:relative;">
-      <div style="height:10%; position:absolute; bottom:0px;">0 files in total.</div>
+      <ul class="list-group" id="fileList">
+          <!--File list-->
+      </ul>
+
+      <div style="height:10%; position:absolute; bottom:0px;" id="filesCountDiv">0 files in total.</div>
   </div>
   <div style="height:0%; position:relative;">
-      <div style="height:0%; position:absolute; bottom:50px; right: 0px;">  <button type="button" class="btn btn-outline-primary" id="fixedbutton">Get all files in zip</button></div>
+      <div style="height:0%; position:absolute; bottom:50px; right: 0px;">  <button type="button" class="btn btn-outline-primary getAllFilesInZip" id="fixedbutton">Get all files in zip</button></div>
   </div>
 
 </div>
@@ -78,7 +76,7 @@
       <ul class="list-group">
           <li class="list-group-item">
               <p>Add new file</p>
-              <form th:action="@{/addFile}" method="POST" enctype="multipart/form-data" class="form-inline">
+              <form method="POST" enctype="multipart/form-data" class="form-inline">
                   <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
@@ -103,5 +101,6 @@
 <script src="js/jquery.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="js/bootstrap.js"></script>
+<script src="js/spa.js"></script>
 </body>
 </html>
